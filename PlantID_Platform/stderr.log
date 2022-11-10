@@ -1,0 +1,55 @@
+TypeError: Cannot read property 'picID' of undefined
+    at app.post (/home/rsconcep/uberg.ca/plantID/server.js:32:37)
+    at Layer.handle [as handle_request] (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/layer.js:95:5)
+    at /home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/index.js:280:10)
+    at serveStatic (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/serve-static/index.js:75:16)
+    at Layer.handle [as handle_request] (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/layer.js:95:5)
+TypeError: Cannot read property 'picID' of undefined
+    at app.post (/home/rsconcep/uberg.ca/plantID/server.js:32:37)
+    at Layer.handle [as handle_request] (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/layer.js:95:5)
+    at /home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/index.js:280:10)
+    at serveStatic (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/serve-static/index.js:75:16)
+    at Layer.handle [as handle_request] (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/express/lib/router/layer.js:95:5)
+SyntaxError: Unexpected token d in JSON at position 26
+    at JSON.parse (<anonymous>)
+    at parse (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/body-parser/lib/read.js:128:18
+    at AsyncResource.runInAsyncScope (async_hooks.js:188:21)
+    at invokeCallback (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:231:16)
+    at done (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+SyntaxError: Unexpected token d in JSON at position 26
+    at JSON.parse (<anonymous>)
+    at parse (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/body-parser/lib/read.js:128:18
+    at AsyncResource.runInAsyncScope (async_hooks.js:188:21)
+    at invokeCallback (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:231:16)
+    at done (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+SyntaxError: Unexpected token d in JSON at position 26
+    at JSON.parse (<anonymous>)
+    at parse (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/body-parser/lib/read.js:128:18
+    at AsyncResource.runInAsyncScope (async_hooks.js:188:21)
+    at invokeCallback (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:231:16)
+    at done (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/home/rsconcep/nodevenv/uberg.ca/plantID/10/lib/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)

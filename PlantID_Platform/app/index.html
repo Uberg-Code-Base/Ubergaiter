@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Microsoft identity platform</title>
+  <link rel="SHORTCUT ICON" href="./favicon.svg" type="image/x-icon">
+  <style>
+    .button {
+      background-color: #00978d !important;
+    }
+    .navbar .bg-primary .navbar-expand-lg .navbar-dark {
+      background-color: #16061a !important;
+
+    }
+    .btn-primary {
+      background-color: #a148e0 !important;
+
+    }
+    .btn-primary:active {
+      background-color: #e04857 !important;
+
+    }
+    .img-container {
+      text-align: center;
+      display: block;
+    }
+
+    img{
+      height: 90%;
+      width: 90%;
+      object-fit: contain;
+    }
+
+    button {
+      background-color: #48abe0;
+      color: white;
+      border: none;
+      padding: 5px;
+      font-size: 31px;
+      height: 130px;
+      width: 130px;
+      box-shadow: 0 2px 4px darkslategray;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-radius: 70%;
+      
+    }
+    button:active {
+      background-color: #48abe0; 
+      box-shadow: 0 0 2px darkslategray;
+      transform: translateY(2px);
+    }
+    
+    .assign-btn {
+        font-size: 18px;
+    }
+    
+  </style>
+  <!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
+  <script src="https://alcdn.msauth.net/browser/2.26.0/js/msal-browser.js"
+    integrity="sha384-fitpJWrpyl840mvd9nBFLGulqR4BJzvim0fzrXQKdsVh2AQzE4rTTJ0o5o+x+dRK"
+    crossorigin="anonymous"></script>
+  
+  
+  <script type="text/javascript" src="https://js.live.net/v7.2/OneDrive.js"></script>
+
+  <!-- To help ensure reliability, Microsoft provides a second CDN -->
+  <script type="text/javascript">
+    if (typeof Msal === 'undefined') document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/browser/2.26.0/js/msal-browser.js' type='text/javascript' crossorigin='anonymous' %3E%3C/script%3E"));
+  </script>
+
+  <!-- adding Bootstrap 4 for UI components  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="SHORTCUT ICON" href="https://c.s-microsoft.com/favicon.ico?v2" type="image/x-icon">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">uberg</a>
+    <div class="btn-group ml-auto dropleft">
+      <button type="button" id="SignIn" class="btn btn-secondary" onclick="signIn()">
+        Sign In
+      </button>
+    </div>
+  </nav>
+  <br>
+  <h5 class="card-header text-center">Ubergaiter Acquisitions Plant Identification Platform</h5>
+  <br>
+  <!--<div class="row" style="margin:auto">-->
+    <div id="card-div" width="100%" class="col-xl" style="display:none">
+      <div class="card text-center col-xl" >
+        <div class="card-body">
+          <h5 class="card-title" id="WelcomeMessage">Please sign-in to start IDing plants to help us create the Uberg Aquatic Plants Dataset</h5>
+          <div id="profile-div"></div>
+          <br>
+      
+          <button class="btn btn-primary" id="get-batch-btn" onclick="getBatch()">Get a set of 10 Random Ubergaiter Acquisition Pictures</button>
+          <!--<br>-->
+          <!--<br>-->
+          <button class="btn btn-primary assign-btn" id="myl-btn" style="display:none" value="Myfoil"></button>
+          
+          <button class="btn btn-primary assign-btn" id="rob-btn" style="display:none">Plant is "A"(example)</button>
+          <br>
+          <br>
+          <button class="btn btn-primary" id="pics-see-btn" onclick="getPic()"style="display:none">Next Picture</button>
+          <!-- <br>
+          <br>
+          <script type="text/javascript">
+            function launchOneDrivePicker(){
+              var odOptions = {clientId: "d9bd1eea-4d51-48f6-b9a6-33a95afdae8a",
+              action: "share",
+              multiSelect: false,
+              advanced: {
+                createLinkParameters: { type: "edit", scope: "organization" },
+              },
+              success: function(files) { console.log(files)},
+              cancel: function() { console.log('cancel') },
+              error: function(error) { console.log(error) }};
+              OneDrive.open(odOptions);
+            }
+          </script>
+          <button onClick="launchOneDrivePicker()">Open from OneDrive</button> -->
+        </div>
+      </div>
+      <h6 class="card-header text-center" id="totalstats"></h6>
+      <h6 class="card-header text-center" id="persostats"></h6>
+  <br>
+    <!--</div>-->
+    <div id="card-div2" class="col-xl-8" style="display:none" >
+      <!-- style="display:none"> -->
+        <div class="card text-center">
+          <div class="card-body">
+            <h3 class="card-title" id="WelcomeMessage">Which plant(s) is it?</h3>
+            <!-- <h5 class="card-header" id="WelcomeMessage">If there's more than one plant, press mixed plants and then press the observed plants, then press Next</h5> -->
+            <div id="profile-div"></div>
+<!--                                        -->
+
+<!--                                -->
+                <div class="btn-group" style="width:100%">
+                  <button style="width:31%" class=" btn btn-primary assign-btn " id="myl2-btn" style="display:initial" >Myriophyllum spicatum</button>
+                  <!-- <br>-->
+                  <span style="width:3%"></span>
+                  <button style="width:31%" class=" btn btn-primary assign-btn " id="rob2-btn" style="display:initial" >Potamogeton robbinsii</button>
+                <!-- </div>
+                <div>  -->
+                  <span style="width:3%"></span>
+                  <button style="width:31%" class=" btn btn-primary assign-btn " id="elo-btn" style="display:initial" >Elodea canadensis</button>
+                  <!-- <br>
+                  <br> -->
+                </div>
+                <br><br>
+<!--                 More buttons (appears on More ) -->
+                <div id="moreButtons" style="display:none">
+                  <div class="btn-group" style="width:100%">
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="rich-btn" style="display:initial" >Potamogeton richardsonii</button>
+                    <!-- <br>-->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="crisp-btn" style="display:initial" >Potamogeton crispus</button>
+                  <!-- </div>
+                  <div>  -->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="amp-btn" style="display:initial" >Potamogeton amplifolius</button>
+                    <!-- <br>
+                    <br> -->
+                  </div>
+                  <br><br>
+                  <div class="btn-group" style="width:100%">
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="grami-btn" style="display:initial" >Potamogeton gramineus</button>
+                    <!-- <br>-->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="utri-btn" style="display:initial" >Utricularia</button>
+                  <!-- </div>
+                  <div>  -->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="sparg-btn" style="display:initial" >Sparganium fluctuans</button>
+                    <!-- <br>
+                    <br> -->
+                  </div>
+                  <br><br>
+                  <div class="btn-group" style="width:100%">
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="cera-btn" style="display:initial" >Ceratophyllum demersum</button>
+                    <!-- <br>-->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class="btn btn-primary assign-btn " id="erio-btn" style="display:initial" >Eriocaulon aquaticum</button>
+                  <!-- </div>
+                  <div>  -->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="valli-btn" style="display:initial" >Vallisneria americana</button>
+                    <!-- <br>
+                    <br> -->
+                  </div>
+                  <br><br>
+                  <div class="btn-group" style="width:100%">
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="het-btn" style="display:initial" >Heteranthera dubia</button>
+                    <!-- <br>-->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn-primary assign-btn " id="cal-btn" style="display:initial" >Callitriche heterophylla</button>
+                  <!-- </div>
+                  <div>  -->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="nuph-btn" style="display:initial" >Nuphar</button>
+                    <!-- <br>
+                    <br> -->
+                  </div>
+                  <br><br>
+                  <div class="btn-group" style="width:100%">
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="n2-btn" style="display:initial" ></button>
+                    <!-- <br>-->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class="btn btn-primary assign-btn " id="n3-btn" style="display:initial" ></button>
+                  <!-- </div>
+                  <div>  -->
+                    <span style="width:3%"></span>
+                    <button style="width:31%" class=" btn btn-primary assign-btn " id="other-btn" style="display:initial" >Other</button>
+                    <!-- <br>
+                    <br> -->
+                  </div>
+                  <br><br>
+                </div>
+<!--                 More buttons end -->
+                <div class="btn-group" style="width:100%">
+                  <button style="width:31%" class=" btn btn-primary  " id="more-btn" style="display:initial" >More</button>
+                  <!-- Here make new buttons appear-->
+                  <span style="width:3%"></span>
+                  <button style="width:31%" class="btn btn-primary assign-btn " id="blur-btn" style="display:initial" >Too Blurred</button>
+                <!-- </div>
+                <div>  -->
+                  <span style="width:3%"></span>
+                  <button style="width:31%" class=" btn btn-primary assign-btn " id="niet-btn" style="display:initial" >Nothing</button>
+                  <!-- <br>
+                  <br> -->
+                </div>
+          </div>
+        </div>
+      </div>
+    <br>
+    <br>
+    <div class="col-xl">
+      <div style="text-align: center" id="img-containerTo" class="img-container">
+        <p id="next"><br></p>
+        <img  id="image" onerror="this.style.display='none'"></img><br>
+      </div>
+      <div class="list-group" id="list-tab" role="tablist">
+      </div>
+    </div>
+    <div id="instructions" style="display:none">
+      <h5 class="card-header" id="WelcomeMessage">Press the correct plant button above, this will tag the picture. Then press Next.</h5>
+      <h6 class="card-header" id="WelcomeMessage">
+        If there's more than one plant, press all the observed plants buttons, then press Next. If the plant's button isn't there, press More, more buttons will appear. If there's no button for it, press Other, then press Next. Feel free to email us at uberg_group@outlook.com to tell us which buttons are missing. Finally, if a plant button doesn't react, press twice. 
+        <br><br>You can refer to these identification guides and links towards other ressources. 
+ 
+      </h6>
+        <h5 class="card-header" id="WelcomeMessage">Thank you!!!   </h5>
+        <h4 class="card-header" id="WelcomeMessage">  
+          Guides and Ressources for Identification</h4>
+          <h5 class="card-header" id="WelcomeMessage">
+          <ul> 
+
+            <li><a target="_blank" rel="noopener noreferrer" href="https://shac.ca/wp-content/uploads/2020/11/AlgaeandWeedIDGuide.pdf">Canada and USA Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="http://crelaurentides.org/wp-content/uploads/2021/09/Identification_des_plantes_aquatiques_PA_2019.pdf">Laurentides Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://rappel.qc.ca/fiches-informatives/plantes-aquatiques/">Rappel Ressources</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.sadl.qc.ca/wp-content/uploads/2021/08/Fiche-aide-plantes-SADL_2021_ISTG.pdf">St-Anne-des-Lacs Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="http://www.lacvertmontpellier.org/lacvert/wp-content/uploads/2021/06/Identification_des_Plantes_aquatiques.pdf">Riviere-Rouge Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.yumpu.com/fr/document/read/16987940/guide-didentification-des-plantes-exotiques-envahissant-centre-de-">Loire-Bretagne Bassin Ressources</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.environnement.gouv.qc.ca/eau/paee/fiches/myriophylle-epi.pdf">Mylfoils Guide</a></li>
+            <!-- <li><a target="_blank" rel="noopener noreferrer" href="https://www.lacdelamontagne.ca/_files/ugd/32e411_afa33e10f9204887b6609354f68394cb.pdf">Lac De La Montagne Guide(french)</a></li> -->
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.lacdelamontagne.ca/_files/ugd/32e411_1b66c47195014b3cbc2e529e5a13a462.pdf">Lac De La Montagne Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.lakestewardsofmaine.org/wp-content/uploads/2019/02/LSM-FieldGuide-2018.pdf">Maine Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://alms.ca/wp-content/uploads/2020/07/ALMS-Plant-Book-2020.pdf">Alberta Guide</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://agriculture.canada.ca/fr/sciences-agricoles-innovation/centres-recherche-collections-lagriculture-lagroalimentaire/collection-nationale-plantes-vasculaires-dao/liste-references-utilisees-aux-fins-didentification-plantes-vasculaires-collection-nationale-plantes">Gov of Canada Plant Identification bibliography & ressources</a></li>
+            
+        </h5>
+        
+    </div>
+    
+    <h6 class="card-header   text-center " id="WelcomeMessage" style="width:100%"><br>- Platform made by Steven Poulin -</h6>
+    <!-- <div class="col-md-5">
+      <div class="tab-content" id="nav-tabContent">
+       
+        
+      </div> -->
+    </div>
+  </div>
+
+
+  <!-- importing bootstrap.js and supporting js libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <!-- importing app scripts (load order is important) -->
+  <script type="text/javascript" src="./app/authConfig.js"></script>
+  <script type="text/javascript" src="./app/graphConfig.js"></script>
+  <script type="text/javascript" src="./app/ui.js"></script>
+
+  <!-- <script type="text/javascript" src="./authRedirect.js"></script>   -->
+  <!-- uncomment the above line and comment the line below if you would like to use the redirect flow -->
+  <script type="text/javascript" src="./app/authPopup.js"></script>
+  <script type="text/javascript" src="./app/graph.js"></script>
+</body>
+
+</html>

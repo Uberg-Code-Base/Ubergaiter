@@ -1,0 +1,7 @@
+sudo rfcomm release 0
+
+sudo rfcomm connect hci0 6C:21:A2:8F:82:2B
+
+sudo ./autohotspot-setup.sh 
+
+rename 's|:|-|g' *
