@@ -16,8 +16,8 @@ import signal, os, subprocess
 import math
 nc = None
 
-account_sid = 'AC33f2ec07b90939afc90bfe93c81e3917'
-auth_token = '35d0041778775159095f952e32d75946'
+account_sid = '__'
+auth_token = '__'
 client = Client(account_sid, auth_token)
 
 vehicle = None
