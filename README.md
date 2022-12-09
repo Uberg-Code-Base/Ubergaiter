@@ -16,5 +16,5 @@ In parameters are, well, parameters, for the camera and the navigator.
 
 Feel free to contact me at spoulin15@ubishops.ca
 
-
+Code-base built by Steven Poulin, 2022
 
