@@ -1,0 +1,10 @@
+Sigmoid and binary-crossentropy for multi-label
+    Labels = [ 0, 1, 0, 0, 1, ... ]
+
+Softmax and categorical_crossentropy for multi-class
+    Labels = ['Myriophyllum', 'Elodae', ... ]
+    
+Build txt, img and csv file while training and texting.
+
+
+
