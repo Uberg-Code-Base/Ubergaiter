@@ -58,7 +58,7 @@ def createSaveFolder():
     try:
         os.makedirs(save_location)
     except:
-        print("Failed to create new directory.")
+        print("Failed to create new directory.") 
     os.chdir(save_location)
 
 def killGphoto2Processes():
