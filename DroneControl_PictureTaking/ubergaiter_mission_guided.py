@@ -5,7 +5,7 @@ from sh import gphoto2 as gp2
 
 from time import sleep
 from datetime import datetime
-import signal, os, subprocess
+import signal, os, subprocess 
 import math
 
 import asyncio
