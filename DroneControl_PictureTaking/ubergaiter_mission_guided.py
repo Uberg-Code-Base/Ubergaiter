@@ -95,7 +95,6 @@ async def changeVehicleMode(vehicle, mode):
         print("Drone can't get in " + str(mode) + " mode")
     return vehicle
 
-
 class PictureMetaData:
     def __init__(self, vehicle):
         self.lat = vehicle.location.global_relative_frame.lat
