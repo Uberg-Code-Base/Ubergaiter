@@ -34,7 +34,7 @@ try:
 
     targetList = [ Adm_1, Adm_2, Adm_3, Adm_4, Adm_5, Adm_6, Adm_7, Adm_Home] 
     
-    #TODO: Implement list retrieval from templated file
+    #TODO: Implement list retrieval from templated file, use argument passing for dayLake variable
 
 except ImportError:
     print("can't import dronekit")
@@ -50,15 +50,10 @@ countPics = 0
 pic = ""
 
 shot_date = datetime.now().strftime("%Y-%m-%d")
-shot_time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S_")
+shot_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S_")
 num_pics_day = 0
 
 picID = "UbergaiterAcquisition_"
-clearCommand = ["--folder", "/store_00020001/DCIM/100CANON", \
-                "--delete-all-files", "-R"]
-triggerCommand = ["--trigger-capture"]
-downloadCommand = ["--get-all-files"]
-timeCommand = ["--set-config datetime=$(date +%s)"]
 folder_name = dayLake + picID
 save_location = "/home/uberg/Documents/gphoto/images/" + folder_name
 
